@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %} Blog{% endblock title %}
+
+
+{%block style%} 
+
+label{
+    color: black;
+    font-weight: bold;
+}
+
+
+.upload-btn-wrapper {
+position: relative;
+overflow: hidden;
+display: inline-block;
+}
+
+.btns {
+border: 2px solid blue;
+color: blue;
+border-radius:30px;
+background-color: white;
+padding: 8px 20px;
+border-radius: 30px;
+font-size: 20px;
+font-weight: bold;
+
+}
+
+.upload-btn-wrapper input[type=file] {
+font-size: 100px;
+position: absolute;
+left: 0;
+top: 0;
+opacity: 0;
+}
+
+h1{
+text-align: center;
+font-weight: bold;
+font-style: italic;
+}
+
+{%endblock style%}
+
+
+{%block body %}
+
+<h1> Update a Post </h1>
+
+<div  style=" max-width: 60%; margin:auto;"><br>
+    <form action="/updatedone/{{posts.id}}" method="post" style="margin-left: 10%; margin-right: 20px;" >
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="blogtitle" class="form-label">BLOG TITLE</label>
+          <input type="text" class="form-control" id="blogtitle" name="blogtitle" value='{{posts.blog_title}}'>
+        </div>
+        <br>
+ 
+        <div class="mb-3">
+          <label for="content" class="form-label">CONTENT</label>
+          <textarea class="form-control" id="content" name="content" rows="10" value='{{posts.content}}'> {{posts.content}} </textarea>
+        </div>
+        <br>
+
+            <div class="d-grid gap-2">
+                <input type="submit" class="btn btn-primary" value="Update">
+              </div>
+            <br><br>
+            
+    
+    
+    </form>
+    <br>
+    </div>
+    
+
+{%endblock body %}

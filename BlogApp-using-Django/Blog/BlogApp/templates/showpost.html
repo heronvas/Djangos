@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} Blog{% endblock title %}
+
+{%block style%} 
+
+
+#design{
+    max-width: 60%;
+    margin: auto;
+    padding: 25px;
+    font-size: 18px;
+    font-style: italic;
+    border: 1px grey solid;
+    line-height: 33px;
+    word-spacing: 3px;
+}
+
+#centers{
+    text-align: center;
+    font-style: italic;
+}
+
+#rights{
+    text-align: right;
+}
+
+
+{%endblock style%}
+
+{%block body %}
+
+    <div class="card" id="design">
+        <div class="card-body" >
+            <h1 class="card-title" id="centers" >{{posts.blog_title}}</h1>
+            <p class="card-text">{{posts.content}} </p>
+            <p class="card-text">
+
+            <p class="text-muted" id="rights"> Post Date: {{posts.post_date}}</p>    
+
+            <p class="text-muted" id="rights">Author : {{request.user}}</p>
+            </p>
+        </div>
+        
+    </div>
+    <br><br>
+
+{%endblock body %}

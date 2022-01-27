@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block title %} Blog{% endblock title %}
+
+{%block style%} 
+
+
+h1{
+text-align: center;
+font-weight: bold;
+font-style: italic;
+}
+
+.column {
+    float: left;
+    width: 20%;
+    padding: 5px;
+  }
+
+.column1 {
+    float: left;
+    width: 80%;
+    padding: 5px;
+  }
+
+
+  table {
+    {% comment %} border-collapse: collapse; {% endcomment %}
+    border-spacing: 0;
+    width: 10%;
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 5px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
+
+    @media screen and (max-width: 600px) {
+        .column1 {
+          width: 100%;
+        }
+  }
+
+
+
+
+#design{
+    max-width: 90%;
+    margin: auto;
+    padding: 25px;
+    font-size: 18px;
+    font-style: italic;
+    border: 1px grey solid;
+    line-height: 33px;
+    word-spacing: 1px;
+}
+
+#centers{
+    text-align: center;
+    font-style: italic;
+    
+}
+
+#centers2{
+  text-align: center;
+  font-style: italic;
+  color:white;
+}
+
+#rights{
+    text-align: right;
+}
+
+{%endblock style%}
+
+{%block body %}
+
+<div class="album py-5 bg-dark"> 
+    
+<h1 id="centers2">All Posts</h1>
+<div class="column1">
+{% csrf_token %}
+{% for i in posts %}
+{% csrf_token %}
+    <div class="card" id="design">
+        <div class="card-body" >
+            <h1 class="card-title" id="centers" >{{i.blog_title}}</h1>
+            <p class="card-text">{{i.content | slice:"0:350"}}...... <a href="blogs/blog/{{i.id}}"><spam style="color:blue;"> read more</spam></a> </p>
+            <p class="card-text">
+
+            <p class="text-muted" id="rights">Post Date : {{i.post_date}}</p>    
+
+            <p class="text-muted" id="rights">Author : <b style="color:black"> {{i.username | title}} </b></p>
+            </p>
+        </div>
+    
+
+
+        
+    </div>
+      <br><br>
+    {%endfor%}
+
+
+    <center>
+        <div>
+            {% if posts.has_previous %}
+    
+                <a href="?page={{posts.previous_page_number}}" style=" text-decoration: none; color:white;">     
+                    <button class="btn btn-primary"  id="rights" type="submit" > Previous </button>
+                </a>
+            {%endif%}
+                <span style="font-size:20px; font-weight:bold;"> {{posts.number}} </span>
+            {% if posts.has_next %}
+                <a href="?page={{posts.next_page_number}}" style=" text-decoration: none; color:white;">  
+                    <button class="btn btn-primary"  id="rights" type="submit">Next </button>
+
+                </a>
+            {%endif%}
+</div>
+</center>
+    
+    </div>
+    <div class="column">
+        
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Users</th>
+
+            </tr>
+            </thead>
+
+            {% for j in users %}
+            <tr>
+                    <td > <a href="/blog/blogger/{{j.username}}" style="text-decoration:none; color:black; font-weight:bold;"> {{ j.username }} </a> </td>
+            </tr>
+            {%endfor%}
+        </table>
+    </div>
+
+
+    
+</div>
+
+
+
+{%endblock body %}

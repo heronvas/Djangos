@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %} Blog{% endblock title %}
+
+
+{%block style%} 
+
+label{
+    color: black;
+    font-weight: bold;
+}
+
+
+.upload-btn-wrapper {
+position: relative;
+overflow: hidden;
+display: inline-block;
+}
+
+.btns {
+border: 2px solid blue;
+color: blue;
+border-radius:30px;
+background-color: white;
+padding: 8px 20px;
+border-radius: 30px;
+font-size: 20px;
+font-weight: bold;
+
+}
+
+.upload-btn-wrapper input[type=file] {
+font-size: 100px;
+position: absolute;
+left: 0;
+top: 0;
+opacity: 0;
+}
+
+h1{
+text-align: center;
+font-weight: bold;
+font-style: italic;
+}
+
+{%endblock style%}
+
+
+{%block body %}
+
+<h1> Bio Updation </h1>
+
+<div  style=" max-width: 60%; margin:auto;"><br>
+    <form action="/bioupdated" method="post" style="margin-left: 10%; margin-right: 20px;" >
+        {% csrf_token %}
+        
+        <br>
+ 
+        <div class="mb-3">
+          <label for="about" class="form-label">Write about yourself</label>
+          <textarea class="form-control" id="aboutauthor" name="aboutauthor" rows="10"> {{bio.about}} </textarea>
+        </div>
+        <br>
+
+            <div class="d-grid gap-2">
+                <input type="submit" class="btn btn-primary" value="Update">
+              </div>
+            <br><br>
+            
+    
+    
+    </form>
+    <br>
+    </div>
+    
+
+{%endblock body %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %} Blog{% endblock title %}
+
+
+{%block style%} 
+label{
+    color: black;
+    font-weight: bold;
+}
+
+
+.upload-btn-wrapper {
+position: relative;
+overflow: hidden;
+display: inline-block;
+}
+
+
+.about{
+    margin:50px;
+}
+
+.bio{
+    line-height:28px;
+    word-spacing:3px;
+}
+
+h1{
+text-align: center;
+font-weight: bold;
+font-style: italic;
+}
+
+{%endblock style%}
+
+
+{%block body %}
+{% if bio.about %}
+
+<div class="card about" id="design">
+    <div class="card-body" >
+        <h1 class="card-title" id="centers" >{{bio.authorname}}</h1>
+        <p class="card-text bio">{{bio.about}}. </p>
+ 
+    </div>
+    
+</div>
+
+
+{%else%}
+<div class="card" id="design">
+    <div class="card-body" >
+        <h1 class="card-title" id="centers" >Not Available</h1>
+        <p class="card-text">{{bio.about}}. </p>
+    </div>
+    
+</div>
+    
+
+{%endif%}
+{%endblock body %}
